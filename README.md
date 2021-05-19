@@ -50,5 +50,8 @@ kubectl get pods -n ingress
 # Lets add a two services
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-apple.yaml
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-banana.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/services-ingress.yaml
+
    
 ```
