@@ -44,4 +44,7 @@ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 helm install myingress ingress-nginx/ingress-nginx
 helm show values ingress-nginx/ingress-nginx
+kubectl get namespace
+kubectl get pods -n ingress
+   
 ```
