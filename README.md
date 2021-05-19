@@ -29,6 +29,9 @@ The new group will be available on the user's next login.
 ```
 
 ## Helm
+```
+sudo snap install helm --classic
+```
 
 ## Charts
 ### Ingress
