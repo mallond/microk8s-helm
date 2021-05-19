@@ -31,8 +31,17 @@ The new group will be available on the user's next login.
 ## Helm
 ```
 sudo snap install helm --classic
+
+kubectl config view --raw > ~/.kube/config
+
 ```
 
 ## Charts
 ### Ingress
 https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx
+```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+helm install myingress ingress-nginx/ingress-nginx
+helm show values ingress-nginx/ingress-nginx
+```
