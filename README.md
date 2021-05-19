@@ -47,10 +47,12 @@ helm show values ingress-nginx/ingress-nginx
 kubectl get namespace
 kubectl get pods -n ingress
 
-# Lets add a two services
+# Lets add a couple of services
+kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/hello-kubernetes.yaml
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-apple.yaml
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-banana.yaml
 
+# Apply the ingress service
 kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/services-ingress.yaml
 
    
