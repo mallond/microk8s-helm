@@ -52,20 +52,11 @@ kubectl get svc -n ingress
 # Install
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install ingress bitnami/nginx-ingress-controller -n ingress
+kubectl patch svc ingress -n ingress -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 
-
-
-https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx
-```
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
-helm install myingress ingress-nginx/ingress-nginx
-helm show values ingress-nginx/ingress-nginx
-kubectl get namespace
-kubectl get pods -n ingress
 
 # Lets add a couple of services
-kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/hello-kubernetes.yaml
+
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-apple.yaml
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-banana.yaml
 
