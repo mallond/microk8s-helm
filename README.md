@@ -119,8 +119,8 @@ curl https://10.152.183.22/influxdb -k
 https://www.jenkins.io/doc/book/installing/kubernetes/
 ```
 # Get to the Helm
-kubectl get namespaces
 kubectl create namespace jenkins
+kubectl get namespaces
 helm repo add jenkinsci https://charts.jenkins.io
 helm repo update
 helm search repo jenkinsci
@@ -132,14 +132,25 @@ kubectl apply -f https://raw.githubusercontent.com/jenkins-infra/jenkins.io/mast
 # We will create a service account called jenkins
 kubectl apply -f https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-sa.yaml
 
-# We will create values
+# We will create jenkins with the value file
 chart=jenkinsci/jenkins
 helm install jenkins -n jenkins -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/jenkins-values.yaml $chart
-Get your 'admin' user password by running
+- debug
+kubectl get pod -n jenkins-0
+kubectl get pod -n jenkins-0 --output=yaml
+kubectl logs jenkins
+
+- Get your 'admin' user password by running
 jsonpath="{.data.jenkins-admin-password}"
 secret=$(kubectl get secret -n jenkins jenkins -o jsonpath=$jsonpath)
 echo $(echo $secret | base64 --decode)
 Save your secretVlPre23prfav8ckPNZOpLP
- 
+
+- Get the Jenkins URL to visit by running these commands in the same shell:
+jsonpath="{.spec.ports[0].nodePort}"
+NODE_PORT=$(kubectl get -n jenkins -o jsonpath=$jsonpath services jenkins)
+jsonpath="{.items[0].status.addresses[0].address}"
+NODE_IP=$(kubectl get nodes -n jenkins -o jsonpath=$jsonpath)
+echo http://$NODE_IP:$NODE_PORT/login
 ```
 
