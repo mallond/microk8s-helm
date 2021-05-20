@@ -39,6 +39,22 @@ kubectl config view --raw > ~/.kube/config
 
 ## Charts
 ### Ingress
+https://artifacthub.io/packages/helm/bitnami/nginx-ingress-controller
+
+# Supporting Commands Used
+helm repo list 
+helm list -a
+helm delete ingress -n ingress
+kubectl get pods -n ingress
+kubectl describe pods ingress-767fb4fb57-lbrzp -n ingress
+kubectl get svc -n ingress
+
+# Install
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install ingress bitnami/nginx-ingress-controller -n ingress
+
+
+
 https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx
 ```
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -95,7 +111,7 @@ https://artifacthub.io/packages/helm/bitnami/influxdb
 # Supporting Commands Used
 helm repo list 
 helm list -a
-helm delete influxdb -n influxdb
+
 kubectl get pods -n influxdb
 kubectl describe pods influxdb-767fb4fb57-lbrzp -n influxdb
 sudo ufw status verbose
