@@ -78,3 +78,11 @@ kubectl edit  ingress example-ingress
   curl https://10.152.183.22/ -k
    
 ```
+
+### InfluxDB
+https://artifacthub.io/packages/helm/bitnami/influxdb
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install myinfluxdb bitnami/influxdb
+
+```
