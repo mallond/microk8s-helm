@@ -136,7 +136,7 @@ kubectl scale deployment jenkins --replicas=0
 # Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=ClusterIP,service.port=80,ingress.enabled=true,ingress.path=/jenkins -n jenkins bitnami/jenkins 
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=ClusterIP,ingress.enabled=true, -n jenkins bitnami/jenkins 
 kubectl get svc -n jenkins
 
 # Add to Ingress
