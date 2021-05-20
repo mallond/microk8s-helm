@@ -84,5 +84,23 @@ https://artifacthub.io/packages/helm/bitnami/influxdb
 ```
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install myinfluxdb bitnami/influxdb
+helm show values bitnami/influxdb
+
+# Add this to ingress
+myinfluxdb 
+kubectl edit  ingress example-ingress
+-----------------
+      - backend:
+          service:
+            name: myinfluxdb
+            port:
+              number: 8086
+        path: /influxdb
+        pathType: ImplementationSpecific
+------------------ 
+
+Test
+curl https://10.152.183.22/influxdb -k
+
 
 ```
