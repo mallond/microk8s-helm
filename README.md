@@ -118,7 +118,7 @@ curl https://10.152.183.22/influxdb -k
 ### Jenkins
 https://artifacthub.io/packages/helm/bitnami/jenkins
 ```
-# Helm Commands Used
+# Supporting Commands Used
 helm repo list 
 helm list -a
 helm delete jenkins -n jenkins
