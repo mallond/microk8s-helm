@@ -60,9 +60,21 @@ kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/se
   myingress-ingress-nginx-controller   LoadBalancer   10.152.183.22   <pending>     80:31640/TCP,443:31735/TCP   35m
   curl https://10.152.183.22/apple -k
   curl https://10.152.183.22/banana -k
+
+# Modify the ingress service
 kubectl describe ingress example-ingress
 kubectl edit  ingress example-ingress
   Lets modify and add hello-kubernets service
-  
+   ---------------------
+        - backend:
+          service:
+            name: hello-kubernetes
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
+  -------------------------
+  Test
+  curl https://10.152.183.22/ -k
    
 ```
