@@ -123,6 +123,7 @@ helm repo list
 helm list -a
 helm delete jenkins -n jenkins
 kubectl get pods -n jenkins
+kubectl describe pods jenkins-767fb4fb57-lbrzp -n jenkins
 
 # Install
 kubectl create namespace jenkins
