@@ -118,7 +118,21 @@ curl https://10.152.183.22/influxdb -k
 ### Jenkins
 https://www.jenkins.io/doc/book/installing/kubernetes/
 ```
+# Get to the Helm
 kubectl get namespaces
+kubectl create namespace jenkins
+helm repo add jenkinsci https://charts.jenkins.io
+helm repo update
+helm search repo jenkinsci
 
+# Create a volume
+"We want to create a persistent volume for our Jenkins controller pod. This will prevent us from losing our whole configuration of the Jenkins controller and our jobs when we reboot our minikube."
+kubectl apply -f https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-volume.yaml
+
+# We will create a service account called jenkins
+kubectl apply -f https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-sa.yaml
+
+# We will create values
+kubectl apply -f https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
 ```
 
