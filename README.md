@@ -76,8 +76,17 @@ kubectl edit  ingress example-ingress
   -------------------------
   Test
   curl https://10.152.183.22/ -k
+  
+  Lets expose the ingress servcie
+  kubectl get svc myingress-ingress-nginx-controller
+  NAME                                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+  myingress-ingress-nginx-controller   LoadBalancer   10.152.183.22   <pending>     80:31640/TCP,443:31735/TCP   68m
+  
+  kubectl patch svc myingress-ingress-nginx-controller  -n default -p '{"spec": {"externalIPs":["172.31.112.14"]}}'
+
    
 ```
+
 
 ### InfluxDB
 https://artifacthub.io/packages/helm/bitnami/influxdb
