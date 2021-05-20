@@ -59,6 +59,7 @@ kubectl patch svc ingress -n ingress -p '{"spec": {"externalIPs":["172.31.27.73"
 
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-apple.yaml
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-banana.yaml
+kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/hello-kubernetes.yaml
 
 # Apply the ingress service
 kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/services-ingress.yaml
