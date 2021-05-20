@@ -113,3 +113,11 @@ curl https://10.152.183.22/influxdb -k
 
 
 ```
+
+### Jenkins
+https://www.jenkins.io/doc/book/installing/kubernetes/
+```
+kubectl get namespaces
+
+```
+
