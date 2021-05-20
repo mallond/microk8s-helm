@@ -154,3 +154,7 @@ NODE_IP=$(kubectl get nodes -n jenkins -o jsonpath=$jsonpath)
 echo http://$NODE_IP:$NODE_PORT/login
 ```
 
+# Notes
+```
+sudo snap remove microk8s
+```
