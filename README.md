@@ -40,7 +40,7 @@ kubectl config view --raw > ~/.kube/config
 ## Charts
 ### Ingress
 https://artifacthub.io/packages/helm/bitnami/nginx-ingress-controller
-
+```
 # Supporting Commands Used
 helm repo list 
 helm list -a
