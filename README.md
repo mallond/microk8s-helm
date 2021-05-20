@@ -52,7 +52,7 @@ kubectl get svc -n ingress
 # Install
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install ingress bitnami/nginx-ingress-controller -n ingress
-kubectl patch svc ingress -n ingress -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
+kubectl patch svc ingress-nginx-ingress-controller -n ingress -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 
 
 # Lets add a couple of services
