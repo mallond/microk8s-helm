@@ -92,27 +92,21 @@ kubectl edit  ingress example-ingress
 ### InfluxDB
 https://artifacthub.io/packages/helm/bitnami/influxdb
 ```
+# Supporting Commands Used
+helm repo list 
+helm list -a
+helm delete influxdb -n influxdb
+kubectl get pods -n influxdb
+kubectl describe pods influxdb-767fb4fb57-lbrzp -n influxdb
+sudo ufw status verbose
+sudo ufw allow 8081/tcp
+kubectl get svc -n influxdb
+
+# Install
+kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install myinfluxdb bitnami/influxdb
-helm show values bitnami/influxdb
-
-# Add this to ingress
-myinfluxdb 
-kubectl edit  ingress example-ingress
------------------
-      - backend:
-          service:
-            name: myinfluxdb
-            port:
-              number: 8086
-        path: /influxdb
-        pathType: ImplementationSpecific
------------------- 
-
-Test
-curl https://10.152.183.22/influxdb -k
-
-
+helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,ingress.enabled=true,influxdb.service.type=NodePort,influxdb.service.port=80 -n influxdb bitnami/influxdb
+kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 ```
 
 ### Jenkins
