@@ -137,7 +137,7 @@ kubectl scale deployment jenkins --replicas=0
 # Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=LoadBalancer,ingress.enabled=false,service.port=8089,ingress.path=/jenkins -n jenkins bitnami/jenkins 
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=LoadBalancer,ingress.enabled=true,service.port=8089 -n jenkins bitnami/jenkins 
 kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 kubectl expose svc jenkins --type=LoadBalancer --name=jenkins
 kubectl get svc -n jenkins
