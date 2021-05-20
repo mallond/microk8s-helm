@@ -116,42 +116,20 @@ curl https://10.152.183.22/influxdb -k
 ```
 
 ### Jenkins
-https://www.jenkins.io/doc/book/installing/kubernetes/
+https://artifacthub.io/packages/helm/bitnami/jenkins
 ```
-# Get to the Helm
+# Helm Commands Used
+helm repo list 
+helm list -a
+helm delete jenkins -n jenkins
+kubectl get pods -n jenkins
+
+# Install
 kubectl create namespace jenkins
-kubectl get namespaces
-helm repo add jenkinsci https://charts.jenkins.io
-helm repo update
-helm search repo jenkinsci
-
-# Create a volume
-"We want to create a persistent volume for our Jenkins controller pod. This will prevent us from losing our whole configuration of the Jenkins controller and our jobs when we reboot our minikube."
-kubectl apply -f https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-volume.yaml
-
-# We will create a service account called jenkins
-kubectl apply -f https://raw.githubusercontent.com/jenkins-infra/jenkins.io/master/content/doc/tutorials/kubernetes/installing-jenkins-on-kubernetes/jenkins-sa.yaml
-
-# We will create jenkins with the value file
-chart=jenkinsci/jenkins
-helm install jenkins -n jenkins -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/jenkins-values.yaml $chart
-- debug
-kubectl get pod -n jenkins-0
-kubectl get pod -n jenkins-0 --output=yaml
-kubectl logs jenkins
-
-- Get your 'admin' user password by running
-jsonpath="{.data.jenkins-admin-password}"
-secret=$(kubectl get secret -n jenkins jenkins -o jsonpath=$jsonpath)
-echo $(echo $secret | base64 --decode)
-Save your secretVlPre23prfav8ckPNZOpLP
-
-- Get the Jenkins URL to visit by running these commands in the same shell:
-jsonpath="{.spec.ports[0].nodePort}"
-NODE_PORT=$(kubectl get -n jenkins -o jsonpath=$jsonpath services jenkins)
-jsonpath="{.items[0].status.addresses[0].address}"
-NODE_IP=$(kubectl get nodes -n jenkins -o jsonpath=$jsonpath)
-echo http://$NODE_IP:$NODE_PORT/login
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=NodePort,service.port=8081 -n jenkins bitnami/jenkins 
+kubectl get svc -n jenkins
+kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.120.231"]}}'
 ```
 
 # Notes
