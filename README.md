@@ -127,7 +127,7 @@ kubectl get pods -n jenkins
 # Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=NodePort,service.port=8081 -n jenkins bitnami/jenkins 
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=NodePort,service.port=80,ingress.enabled=true -n jenkins bitnami/jenkins 
 kubectl get svc -n jenkins
 kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.120.231"]}}'
 ```
