@@ -52,7 +52,7 @@ kubectl get svc -n ingress
 # Install
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install ingress bitnami/nginx-ingress-controller -n ingress
-kubectl patch svc ingress-nginx-ingress-controller -n ingress -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
+
 
 
 # Lets add a couple of services
@@ -97,7 +97,7 @@ kubectl describe svc influxdb -n influxdb
 kubectl get pods -n influxdb
 kubectl describe pods influxdb-767fb4fb57-lbrzp -n influxdb
 sudo ufw status verbose
-sudo ufw allow 8081/tcp
+sudo ufw allow 8089/tcp
 kubectl get svc -n influxdb
 
 # Install
@@ -132,11 +132,14 @@ kubectl describe pods jenkins-767fb4fb57-lbrzp -n jenkins
 sudo ufw status verbose
 sudo ufw allow 8081/tcp
 kubectl scale deployment jenkins --replicas=0
+ 
 
 # Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=ClusterIP,ingress.enabled=true, -n jenkins bitnami/jenkins 
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=LoadBalancer,ingress.enabled=false,service.port=8089,ingress.path=/jenkins -n jenkins bitnami/jenkins 
+kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
+kubectl expose svc jenkins --type=LoadBalancer --name=jenkins
 kubectl get svc -n jenkins
 
 # Add to Ingress
