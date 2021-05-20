@@ -132,6 +132,9 @@ kubectl describe pods jenkins-767fb4fb57-lbrzp -n jenkins
 sudo ufw status verbose
 sudo ufw allow 8081/tcp
 kubectl scale deployment jenkins --replicas=0
+
+## Ingress Jenkins Test
+kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/jenkins-ingress.yaml
  
 
 # Install
