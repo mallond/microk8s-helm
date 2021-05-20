@@ -91,8 +91,9 @@ https://artifacthub.io/packages/helm/bitnami/influxdb
 ```
 # Supporting Commands Used
 helm repo list 
+helm delete influxdb -n influxdb
 helm list -a
-
+kubectl describe svc influxdb -n influxdb
 kubectl get pods -n influxdb
 kubectl describe pods influxdb-767fb4fb57-lbrzp -n influxdb
 sudo ufw status verbose
@@ -102,7 +103,20 @@ kubectl get svc -n influxdb
 # Install
 kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,ingress.enabled=true,influxdb.service.type=NodePort,influxdb.service.port=80 -n influxdb bitnami/influxdb
+helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,ingress.enabled=true,influxdb.service.type=NodePort,influxdb.service.port=8086 -n influxdb bitnami/influxdb
+
+# Add to Ingress
+kubectl edit  ingress example-ingress
+---------------------
+        - backend:
+          service:
+            name: influxdb
+            port:
+              number: 8086
+        path: /influxdb
+        pathType: ImplementationSpecific
+  -------------------------
+
 kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 ```
 
@@ -122,8 +136,21 @@ kubectl scale deployment jenkins --replicas=0
 # Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=NodePort,service.port=80,ingress.enabled=true -n jenkins bitnami/jenkins 
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=NodePort,service.port=80,ingress.enabled=true,ingress.path=/jenkins -n jenkins bitnami/jenkins 
 kubectl get svc -n jenkins
+
+# Add to Ingress
+kubectl edit  ingress example-ingress
+---------------------
+        - backend:
+          service:
+            name: jenkins
+            port:
+              number: 80
+        path: /jenkins
+        pathType: ImplementationSpecific
+  -------------------------
+  
 kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 ```
 
