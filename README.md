@@ -11,7 +11,7 @@ sudo snap install microk8s --classic --channel=1.21/stable
 sudo microk8s status --wait-ready 
 ```
 ```
-sudo microk8s enable dashboard dns registry helm helm3 ingress 
+sudo microk8s enable dashboard dns registry helm3 ingress 
 ```
 ```
 sudo snap alias microk8s.kubectl kubectl    
@@ -32,6 +32,7 @@ The new group will be available on the user's next login.
 ```
 sudo snap install helm --classic
 
+mkdir ~/.kube
 kubectl config view --raw > ~/.kube/config
 
 ```
