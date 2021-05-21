@@ -134,9 +134,8 @@ helm install ingress bitnami/nginx-ingress-controller -n ingress
 
 
 - Set up external address
-kubectl port-forward -n ingress service/ingress-nginx-ingress-controller --address 0.0.0.0 80:80
-or
-kubectl patch svc prometheus-k8s -n monitoring -p '{"spec": {"externalIPs":["172.31.45.181"]}}'
+
+kubectl patch svc ingress-nginx-ingress-controller-n ingress -p '{"spec": {"externalIPs":["172.31.121.244"]}}'
 
 
 
