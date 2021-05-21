@@ -19,6 +19,7 @@ sudo snap alias microk8s.kubectl kubectl
 1. After the above install, you will get the message. re-login to have the alias enabled
 ```
 kubectl
+
 Insufficient permissions to access MicroK8s.
 You can either try again with sudo or add the user cloud_user to the 'microk8s' group:
 
