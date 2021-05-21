@@ -74,7 +74,7 @@ kubectl logs influxdb-6bc5449b4-xnvvj -n influxdb
 # Install 
 kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer -n influxdb bitnami/influxdb
+helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer,backup.enabled=true,backup.cronjob.schedule="*/15 * * * *" -n influxdb bitnami/influxdb
 
 # Expose the endpont
 kubectl port-forward -n influxdb service/influxdb --address 0.0.0.0 8086:8086
