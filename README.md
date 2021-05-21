@@ -134,27 +134,14 @@ sudo ufw status verbose
 sudo ufw allow 8081/tcp
 kubectl scale deployment jenkins --replicas=0
 
-## Ingress Jenkins Test
+## Ingress Setup
 kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/jenkins-ingress.yaml
  
-
 # Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password -n jenkins bitnami/jenkins 
 kubectl get svc -n jenkins
-
-# Add to Ingress
-kubectl edit  ingress example-ingress
----------------------
-        - backend:
-          service:
-            name: jenkins
-            port:
-              number: 80
-        path: /jenkins
-        pathType: ImplementationSpecific
-  -------------------------
   
 ```
 
