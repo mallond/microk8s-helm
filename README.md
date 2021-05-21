@@ -59,7 +59,7 @@ kubectl get svc -n influxdb
 kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer,influxdb.service.port=8085 -n influxdb bitnami/influxdb
-kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.21.205"]}}'
+kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.119.23"]}}'
 
 # Add to Ingress
 kubectl edit  ingress example-ingress
@@ -126,6 +126,15 @@ kubectl port-forward -n monitoring service/prometheus-k8s --address 0.0.0.0 9090
 # Grafana UI
 kubectl port-forward -n monitoring service/grafana --address 0.0.0.0 3000:3000
 
+```
+
+# Backup and Recovery - Velero
+https://velero.io/
+```
+# Install Velero
+curl -L https://github.com/vmware-tanzu/velero/releases/download/v1.6.0/velero-v1.6.0-linux-amd64.tar.gz > v.tar.gz
+tar -xvf v.tar.gz
+sudo mv velero-v1.6.0-linux-amd64/velero /usr/local/bin
 ```
 
 # Notes
