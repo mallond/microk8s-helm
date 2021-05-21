@@ -64,8 +64,6 @@ helm list -a
 kubectl describe svc influxdb -n influxdb
 kubectl get pods -n influxdb
 kubectl describe pods influxdb-767fb4fb57-lbrzp -n influxdb
-sudo ufw status verbose
-sudo ufw allow 8089/tcp
 kubectl get svc -n influxdb
 
 # Install 
