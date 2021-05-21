@@ -137,7 +137,8 @@ kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/je
 # Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password -n jenkins bitnami/jenkins 
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,ingress.enabled=true,service.type=ClusterIP,ingress.hostname=2e3666798d1c.mylabserver.com -n jenkins bitnami/jenkins 
+kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.35.18"]}}'
 kubectl get svc -n jenkins
   
 ```
