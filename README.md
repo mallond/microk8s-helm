@@ -70,6 +70,7 @@ kubectl get pods -n influxdb
 kubectl describe pods influxdb-767fb4fb57-lbrzp -n influxdb
 kubectl get svc -n influxdb
 kubectl logs influxdb-6bc5449b4-xnvvj -n influxdb
+kubectl exec --stdin --tty influxdb-6bc5449b4-9ddcf -- /bin/sh 
 
 # Install 
 kubectl create namespace influxdb
