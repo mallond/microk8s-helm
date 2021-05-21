@@ -64,12 +64,8 @@ kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/h
 
 # Apply the ingress service
 kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/services-ingress.yaml
-  Lets do a few tests
-  kubectl get svc myingress-ingress-nginx-controller
-  NAME                                 TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
-  myingress-ingress-nginx-controller   LoadBalancer   10.152.183.22   <pending>     80:31640/TCP,443:31735/TCP   35m
-  curl https://10.152.183.22/apple -k
-  curl https://10.152.183.22/banana -k
+kubectl apply -f 
+
 
 # Modify the ingress service
 kubectl describe ingress example-ingress
