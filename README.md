@@ -38,7 +38,7 @@ kubectl config view --raw > ~/.kube/config
 
 ```
 
-# Out of the Box with Microk8S
+## Out of the Box with Microk8S
 ```
 # List Monitoring Tools
 microk8s kubectl get pods -n monitoring
