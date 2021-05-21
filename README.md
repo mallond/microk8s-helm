@@ -82,6 +82,12 @@ kubectl get pods -n influxdb
   NAME                       READY   STATUS    RESTARTS   AGE 
   influxdb-6bc5449b4-xnvvj   1/1     Running   4          6m56s 
 
+# CLI
+## Install
+wget https://dl.influxdata.com/influxdb/releases/influxdb2-client-2.0.6-linux-amd64.tar.gz
+tar xvfz influxdb2-client-2.0.6-linux-amd64.tar.gz
+
+
 ```
 
 ### Jenkins - Port 8091
