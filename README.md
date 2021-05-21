@@ -38,6 +38,19 @@ kubectl config view --raw > ~/.kube/config
 
 ```
 
+# Out of the Box with Microk8S
+```
+# List Monitoring Tools
+microk8s kubectl get pods -n monitoring
+
+# Prometheus UI
+kubectl port-forward -n monitoring service/prometheus-k8s --address 0.0.0.0 9090:9090
+
+# Grafana UI
+kubectl port-forward -n monitoring service/grafana --address 0.0.0.0 3000:3000
+
+```
+
 ## Charts
 
 
@@ -115,18 +128,7 @@ helm install ingress --set image.pullPolicy=Always bitnami/nginx-ingress-control
 
 ```
 
-# Out of the Box with Microk8S
-```
-# List Monitoring Tools
-microk8s kubectl get pods -n monitoring
 
-# Prometheus UI
-kubectl port-forward -n monitoring service/prometheus-k8s --address 0.0.0.0 9090:9090
-
-# Grafana UI
-kubectl port-forward -n monitoring service/grafana --address 0.0.0.0 3000:3000
-
-```
 
 # Backup and Recovery  
  https://howchoo.com/kubernetes/kubectl-cp-copy-files-to-from-pods
