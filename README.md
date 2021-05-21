@@ -159,18 +159,17 @@ sudo snap remove microk8s
 
 # Cheat Sheet
 [all](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) 
-[context-configuration)[https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration] 
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#updating-resources
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#patching-resources
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#editing-resources
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#scaling-resources
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#deleting-resources
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-nodes-and-cluster
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/#resource-types
+[contextconfiguration](context-configuration)[https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration)
+[creating objects](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects)
+[viewing finding resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
+[updating resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#updating-resources)
+[patching resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#patching-resources)
+[resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#editing-resources)
+[scaling resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#scaling-resources)
+[deleteing resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#deleting-resources)
+[running pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
+[interacting with nodes and clusters](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-nodes-and-cluster)
+[resource types](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#resource-types)
 
 
 
