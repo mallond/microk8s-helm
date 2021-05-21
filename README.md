@@ -72,27 +72,16 @@ kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer -n influxdb bitnami/influxdb
 
-# Expose endpont
-kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.119.23"]}}'
+# Expose the endpont
+kubectl port-forward -n influxdb service/influxdb --address 0.0.0.0 8086:8086
+or
+kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.45.181"]}}'
 
 # Note: Be patient the service can take some time to start, and if you don't wait until running you may see many restarts.
 kubectl get pods -n influxdb 
   NAME                       READY   STATUS    RESTARTS   AGE 
   influxdb-6bc5449b4-xnvvj   1/1     Running   4          6m56s 
 
-# Add to Ingress
-kubectl edit  ingress example-ingress
----------------------
-        - backend:
-          service:
-            name: influxdb
-            port:
-              number: 8086
-        path: /influxdb
-        pathType: ImplementationSpecific
-  -------------------------
-
-kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 ```
 
 ### Jenkins - Port 8091
