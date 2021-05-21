@@ -65,12 +65,20 @@ kubectl describe svc influxdb -n influxdb
 kubectl get pods -n influxdb
 kubectl describe pods influxdb-767fb4fb57-lbrzp -n influxdb
 kubectl get svc -n influxdb
+kubectl logs influxdb-6bc5449b4-xnvvj -n influxdb
 
 # Install 
 kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer -n influxdb bitnami/influxdb
+
+# Expose endpont
 kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.119.23"]}}'
+
+# Note: Be patient the service can take some time to start, and if you don't wait until running you may see many restarts.
+kubectl get pods -n influxdb 
+  NAME                       READY   STATUS    RESTARTS   AGE 
+  influxdb-6bc5449b4-xnvvj   1/1     Running   4          6m56s 
 
 # Add to Ingress
 kubectl edit  ingress example-ingress
@@ -147,3 +155,21 @@ kubectl cp my-pod:my-file my-file
 ```
 sudo snap remove microk8s
 ```
+
+# Cheat Sheet
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#updating-resources
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#patching-resources
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#editing-resources
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#scaling-resources
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#deleting-resources
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-nodes-and-cluster
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/#resource-types
+
+
+
