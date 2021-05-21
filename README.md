@@ -158,7 +158,7 @@ sudo snap remove microk8s
 ```
 
 # Cheat Sheet
-https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+[all](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/#creating-objects
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources
