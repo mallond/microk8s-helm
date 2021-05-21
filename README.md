@@ -52,6 +52,7 @@ kubectl get svc -n ingress
 # Install
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install ingress bitnami/nginx-ingress-controller -n ingress
+kubectl patch svc ingress-nginx-ingress-controller  -n ingress -p '{"spec": {"externalIPs":["172.31.35.18"]}}'
 
 
 
@@ -140,9 +141,7 @@ kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/je
 # Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.type=LoadBalancer,ingress.enabled=true,service.port=8089 -n jenkins bitnami/jenkins 
-kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
-kubectl expose svc jenkins --type=LoadBalancer --name=jenkins
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password -n jenkins bitnami/jenkins 
 kubectl get svc -n jenkins
 
 # Add to Ingress
@@ -157,7 +156,6 @@ kubectl edit  ingress example-ingress
         pathType: ImplementationSpecific
   -------------------------
   
-kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 ```
 
 # Notes
