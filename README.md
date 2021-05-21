@@ -11,7 +11,7 @@ sudo snap install microk8s --classic --channel=1.21/stable
 sudo microk8s status --wait-ready 
 ```
 ```
-sudo microk8s enable dashboard dns registry helm3 ingress 
+sudo microk8s enable dashboard dns registry helm3 prometheus 
 ```
 ```
 sudo snap alias microk8s.kubectl kubectl    
@@ -38,50 +38,6 @@ kubectl config view --raw > ~/.kube/config
 ```
 
 ## Charts
-### Ingress
-https://artifacthub.io/packages/helm/bitnami/nginx-ingress-controller
-```
-# Supporting Commands Used
-helm repo list 
-helm list -a
-helm delete ingress -n ingress
-kubectl get pods -n ingress
-kubectl describe pods ingress-767fb4fb57-lbrzp -n ingress
-kubectl get svc -n ingress
-
-# Install
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install ingress bitnami/nginx-ingress-controller -n ingress
-kubectl patch svc ingress-nginx-ingress-controller  -n ingress -p '{"spec": {"externalIPs":["172.31.35.18"]}}'
-
-
-
-# Lets add a couple of services
-
-kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-apple.yaml
-kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-banana.yaml
-kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/hello-kubernetes.yaml
-kubectl delete svc hello-kubernetes
-
-# Apply the ingress service
-kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/services-ingress.yaml
-kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/hello-kubernetes-ingress.yaml
-
-
-# Modify the ingress service
-kubectl describe ingress example-ingress
-kubectl edit  ingress example-ingress
-  Lets modify and add hello-kubernets service
-   ---------------------
-        - backend:
-          service:
-            name: hello-kubernetes
-            port:
-              number: 80
-        path: /
-        pathType: ImplementationSpecific
-  -------------------------
-```
 
 
 ### InfluxDB
