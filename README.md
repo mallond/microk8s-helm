@@ -3,7 +3,7 @@
 
 ![download](https://user-images.githubusercontent.com/993459/111545821-ea5d5880-8733-11eb-9352-d22f812e9fb0.png)
 
-## Base Install - Ubuntu 20.x
+## Microk8s Base Install - Ubuntu 20.x
 ```
 sudo snap install microk8s --classic --channel=1.21/stable
 ```
@@ -28,7 +28,7 @@ You can either try again with sudo or add the user cloud_user to the 'microk8s' 
 The new group will be available on the user's next login.
 ```
 
-## Helm
+## Helm Install and Setup
 ```
 sudo snap install helm --classic
 
