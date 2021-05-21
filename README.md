@@ -64,7 +64,7 @@ kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/h
 
 # Apply the ingress service
 kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/services-ingress.yaml
-kubectl apply -f 
+kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/hello-kubernetes-ingress.yaml
 
 
 # Modify the ingress service
