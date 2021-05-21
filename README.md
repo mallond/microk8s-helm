@@ -69,7 +69,7 @@ kubectl get svc -n influxdb
 # Install 
 kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer,influxdb.service.port=8085 -n influxdb bitnami/influxdb
+helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer -n influxdb bitnami/influxdb
 kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.119.23"]}}'
 
 # Add to Ingress
