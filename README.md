@@ -58,7 +58,7 @@ token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d
 microk8s kubectl -n kube-system describe secret $token
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
 
-# Change the Port 8443 - This will allow you to view outside of localhost
+## Change the Port 8443 - This will allow you to view outside of localhost
 kubectl -n kube-system edit service kubernetes-dashboard
 https://36aa83ee771c.mylabserver.com:8443/
 
