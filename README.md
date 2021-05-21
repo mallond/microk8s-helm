@@ -128,13 +128,19 @@ kubectl port-forward -n monitoring service/grafana --address 0.0.0.0 3000:3000
 
 ```
 
-# Backup and Recovery - Velero
-https://velero.io/
+# Backup and Recovery  
+ https://howchoo.com/kubernetes/kubectl-cp-copy-files-to-from-pods
 ```
-# Install Velero
-curl -L https://github.com/vmware-tanzu/velero/releases/download/v1.6.0/velero-v1.6.0-linux-amd64.tar.gz > v.tar.gz
-tar -xvf v.tar.gz
-sudo mv velero-v1.6.0-linux-amd64/velero /usr/local/bin
+kubectl get pod influxdb-6bc5449b4-dqjbd
+kubectl exec --stdin --tty influxdb-6bc5449b4-dqjbd -n influxdb -- /bin/bash 
+
+kubectl get PersistentVolumeClaim -n influxdb
+kubectl cp <local_path> <namespace>/<pod_name>:/tmp/backup/
+kubectl cp influxdb-6bc5449b4-dqjbd:/etc/influxdb/influxdb.conf ~/influxdb_backups -n influxdb
+
+kubectl cp my-pod:my-file my-file
+/etc/influxdb/influxdb.conf
+
 ```
 
 # Notes
