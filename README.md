@@ -107,10 +107,12 @@ kubectl scale deployment jenkins --replicas=0
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.port=8091 bitnami/jenkins -n jenkins
-- Set up external address
-kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.21.205"]}}'
 
-  
+# Expose the endpont
+kubectl port-forward -n jenkins service/jenkins --address 0.0.0.0 8091:8091
+or
+kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.45.181"]}}'
+
 ```
 
 ## Ingress
