@@ -98,16 +98,32 @@ kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.21.205
   
 ```
 
+## Ingress
+https://artifacthub.io/packages/helm/bitnami/nginx-ingress-controller
+```
+## Install
+kubectl create namespace ingress
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+helm install my-release bitnami/nginx-ingress-controller
+
+helm install ingress --set image.pullPolicy=Always bitnami/nginx-ingress-controller -n ingress
+- Set up external address
+
+
+
+```
+
 # Out of the Box with Microk8S
 ```
 # List Monitoring Tools
 microk8s kubectl get pods -n monitoring
 
 # Prometheus UI
-root@dlp:~# microk8s kubectl port-forward -n monitoring service/prometheus-k8s --address 0.0.0.0 9090:9090
+kubectl port-forward -n monitoring service/prometheus-k8s --address 0.0.0.0 9090:9090
 
 # Grafana UI
-root@dlp:~# microk8s kubectl port-forward -n monitoring service/grafana --address 0.0.0.0 3000:3000
+kubectl port-forward -n monitoring service/grafana --address 0.0.0.0 3000:3000
 
 ```
 
