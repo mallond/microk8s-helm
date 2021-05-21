@@ -130,11 +130,13 @@ https://artifacthub.io/packages/helm/bitnami/nginx-ingress-controller
 ## Install
 kubectl create namespace ingress
 helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install ingress bitnami/nginx-ingress-controller -n ingress
 
-helm install my-release bitnami/nginx-ingress-controller
 
-helm install ingress --set image.pullPolicy=Always bitnami/nginx-ingress-controller -n ingress
 - Set up external address
+kubectl port-forward -n ingress service/ingress-nginx-ingress-controller --address 0.0.0.0 80:80
+or
+kubectl patch svc prometheus-k8s -n monitoring -p '{"spec": {"externalIPs":["172.31.45.181"]}}'
 
 
 
