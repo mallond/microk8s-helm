@@ -77,7 +77,7 @@ kubectl edit cronjob.batch influxdb-backup -n influxdb
 # Install 
 kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer,backup.enabled=true,backup.cronjob.schedule="*/15 * * * *" -n influxdb bitnami/influxdb
+helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer -n influxdb bitnami/influxdb
 
 # Expose the endpont
 kubectl port-forward -n influxdb service/influxdb --address 0.0.0.0 8086:8086
@@ -93,6 +93,8 @@ kubectl get pods -n influxdb
 ## Install
 wget https://dl.influxdata.com/influxdb/releases/influxdb2-client-2.0.6-linux-amd64.tar.gz
 tar xvfz influxdb2-client-2.0.6-linux-amd64.tar.gz
+
+influxd backup -host $INFLUX_HOST:8088 /backup/$DATE
 
 
 ```
