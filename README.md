@@ -40,7 +40,7 @@ kubectl config view --raw > ~/.kube/config
 ## Charts
 
 
-### InfluxDB
+### InfluxDB - Port 8085
 https://artifacthub.io/packages/helm/bitnami/influxdb
 ```
 # Supporting Commands Used
@@ -54,10 +54,11 @@ sudo ufw status verbose
 sudo ufw allow 8089/tcp
 kubectl get svc -n influxdb
 
-# Install
+# Install 
 kubectl create namespace influxdb
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,ingress.enabled=true,influxdb.service.type=NodePort,influxdb.service.port=8086 -n influxdb bitnami/influxdb
+helm install influxdb --set auth.admin.username=admin,auth.admin.password=password,influxdb.service.type=LoadBalancer,influxdb.service.port=8085 -n influxdb bitnami/influxdb
+kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.21.205"]}}'
 
 # Add to Ingress
 kubectl edit  ingress example-ingress
@@ -74,7 +75,7 @@ kubectl edit  ingress example-ingress
 kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.27.73"]}}'
 ```
 
-### Jenkins
+### Jenkins - Port 8091
 https://artifacthub.io/packages/helm/bitnami/jenkins
 ```
 # Supporting Commands Used
@@ -87,16 +88,27 @@ sudo ufw status verbose
 sudo ufw allow 8081/tcp
 kubectl scale deployment jenkins --replicas=0
 
-## Ingress Setup
-kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/jenkins-ingress.yaml
- 
-# Install
+## Install
 kubectl create namespace jenkins
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,ingress.enabled=true,service.type=ClusterIP,ingress.hostname=2e3666798d1c.mylabserver.com -n jenkins bitnami/jenkins 
-kubectl patch svc influxdb -n influxdb -p '{"spec": {"externalIPs":["172.31.35.18"]}}'
-kubectl get svc -n jenkins
+helm install jenkins --set jenkinsUser=admin,jenkinsPassword=password,service.port=8091 bitnami/jenkins -n jenkins
+- Set up external address
+kubectl patch svc jenkins -n jenkins -p '{"spec": {"externalIPs":["172.31.21.205"]}}'
+
   
+```
+
+# Out of the Box with Microk8S
+```
+# List Monitoring Tools
+microk8s kubectl get pods -n monitoring
+
+# Prometheus UI
+root@dlp:~# microk8s kubectl port-forward -n monitoring service/prometheus-k8s --address 0.0.0.0 9090:9090
+
+# Grafana UI
+root@dlp:~# microk8s kubectl port-forward -n monitoring service/grafana --address 0.0.0.0 3000:3000
+
 ```
 
 # Notes
