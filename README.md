@@ -61,6 +61,7 @@ kubectl patch svc ingress-nginx-ingress-controller  -n ingress -p '{"spec": {"ex
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-apple.yaml
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/service-banana.yaml
 kubectl create -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/hello-kubernetes.yaml
+kubectl delete svc hello-kubernetes
 
 # Apply the ingress service
 kubectl apply -f https://raw.githubusercontent.com/mallond/microk8s-helm/main/services-ingress.yaml
