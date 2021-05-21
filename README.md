@@ -51,7 +51,7 @@ kubectl patch svc prometheus-k8s -n monitoring -p '{"spec": {"externalIPs":["172
 # Grafana UI
 kubectl port-forward -n monitoring service/grafana --address 0.0.0.0 3000:3000
 or
-kubectl patch svc grafana -n monitoring -p '{"spec": {"externalIPs":["172.31.45.181"]}}'
+kubectl patch svc grafana -n monitoring -p '{"spec": {"externalIPs":["172.31.121.244"]}}'
 
 ```
 
