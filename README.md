@@ -187,5 +187,14 @@ sudo snap remove microk8s
 [interacting with nodes and clusters](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-nodes-and-cluster)  
 [resource types](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#resource-types)  
 
+# Extra Mounting Volume for Docker Container - Not Kubeclt
+```
+mkdir tmp
+cd tmp
+touch file.txt
+docker run -it -v "$(pwd)":/data1 ubuntu
+
+```
+
 
 
